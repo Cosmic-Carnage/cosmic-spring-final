@@ -17,7 +17,6 @@ public class MovieApiController {
 
     @GetMapping("/")
     public ResponseEntity<List<Movie>> getMovie() {
-        // ResponseEntity returns List of Jokes provide by JPA findAll()
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
 
