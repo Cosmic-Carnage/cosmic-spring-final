@@ -12,6 +12,8 @@ import com.nighthawk.spring_portfolio.mvc.note.Note;
 import com.nighthawk.spring_portfolio.mvc.note.NoteJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.person.Person;
 import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
+import com.nighthawk.spring_portfolio.mvc.spacebook.Spacebook;
+import com.nighthawk.spring_portfolio.mvc.spacebook.SpacebookJpaRepository;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class ModelInit {
     @Autowired JokesJpaRepository jokesRepo;
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
+    @Autowired SpacebookJpaRepository spacebookRepo;
 
     @Bean
     CommandLineRunner run() {  // The run() method will be executed after the application starts
@@ -47,6 +50,12 @@ public class ModelInit {
                     Note n = new Note(text, person);  // constructor uses new person as Many-to-One association
                     noteRepo.save(n);  // JPA Save                  
                 }
+            }
+            String[] spacebookArray = Jokes.init();
+            for (String spacebook : spacebookArray) {
+                List<Spacebook> spacebookFound = spacebookRepo.findBySpacebookIgnoreCase(spacebook);  // JPA lookup
+                if (spacebookFound.size() == 0)
+                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0)); //JPA save
             }
 
         };
