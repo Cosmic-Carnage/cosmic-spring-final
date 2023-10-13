@@ -51,7 +51,7 @@ public class ModelInit {
                     noteRepo.save(n);  // JPA Save                  
                 }
             }
-            String[] spacebookArray = Jokes.init();
+            String[] spacebookArray = Spacebook.init();
             for (String spacebook : spacebookArray) {
                 List<Spacebook> spacebookFound = spacebookRepo.findBySpacebookIgnoreCase(spacebook);  // JPA lookup
                 if (spacebookFound.size() == 0)
