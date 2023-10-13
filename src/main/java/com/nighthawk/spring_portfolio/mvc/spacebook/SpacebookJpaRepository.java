@@ -10,6 +10,6 @@ public interface SpacebookJpaRepository extends JpaRepository<Spacebook, Long> {
     The below custom methods are prototyped for this application
     */
     void save(String Spacebook);
-    List<Spacebook> findAllByOrderByJokeAsc();
+    List<Spacebook> findAllByOrderBySpacebookAsc();
     List<Spacebook> findBySpacebookIgnoreCase(String spacebook);
 }
