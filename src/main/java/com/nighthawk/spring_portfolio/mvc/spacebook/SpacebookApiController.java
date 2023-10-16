@@ -61,4 +61,15 @@ public class SpacebookApiController {
         // Bad ID
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Spacebook> deleteSpacebook(@PathVariable long id) {
+        Optional<Spacebook> optional = repository.findById(id);
+        if (optional.isPresent()) {  // Good ID
+            Spacebook spacebook = optional.get();  // value from findByID
+            repository.deleteById(id);  // value from findByID
+            return new ResponseEntity<>(spacebook, HttpStatus.OK);  // OK HTTP response: status code, headers, and body
+        }
+        // Bad ID
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+    }
 }
