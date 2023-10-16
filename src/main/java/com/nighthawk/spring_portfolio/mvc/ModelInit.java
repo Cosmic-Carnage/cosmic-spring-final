@@ -12,8 +12,8 @@ import com.nighthawk.spring_portfolio.mvc.note.Note;
 import com.nighthawk.spring_portfolio.mvc.note.NoteJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.person.Person;
 import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
-import com.nighthawk.spring_portfolio.mvc.spacebook.Spacebook;
-import com.nighthawk.spring_portfolio.mvc.spacebook.SpacebookJpaRepository;
+import com.nighthawk.spring_portfolio.mvc.leaderboard.Leaderboard;
+import com.nighthawk.spring_portfolio.mvc.leaderboard.LeaderboardJpaRepository;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ModelInit {
     @Autowired JokesJpaRepository jokesRepo;
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
-    @Autowired SpacebookJpaRepository spacebookRepo;
+    @Autowired LeaderboardJpaRepository leaderboardRepo;
 
     @Bean
     CommandLineRunner run() {  // The run() method will be executed after the application starts
@@ -51,11 +51,11 @@ public class ModelInit {
                     noteRepo.save(n);  // JPA Save                  
                 }
             }
-            String[] spacebookArray = Spacebook.init();
-            for (String spacebook : spacebookArray) {
-                List<Spacebook> spacebookFound = spacebookRepo.findBySpacebookIgnoreCase(spacebook);  // JPA lookup
-                if (spacebookFound.size() == 0)
-                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0)); //JPA save
+            String[] leaderboardArray = Leaderboard.init();
+            for (String leaderboard : leaderboardArray) {
+                List<Leaderboard> leaderboardFound = leaderboardRepo.findByLeaderboardIgnoreCase(leaderboard);  // JPA lookup
+                if (leaderboardFound.size() == 0)
+                    leaderboardRepo.save(new Leaderboard(null, leaderboard, 0, 0)); //JPA save
             }
 
         };

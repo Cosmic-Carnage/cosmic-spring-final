@@ -1,4 +1,4 @@
-package com.nighthawk.spring_portfolio.mvc.spacebook;
+package com.nighthawk.spring_portfolio.mvc.leaderboard;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,20 +10,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity // Annotation to simplify creating an entity, which is a lightweight persistence domain object. Typically, an entity represents a table in a relational database, and each entity instance corresponds to a row in that table.
-public class Spacebook {
+public class Leaderboard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique=true)
-    private String spacebook;
+    private String leaderboard;
 
     private int like;
     private int dislike;
 
     // starting jokes
     public static String[] init() {
-        final String[] spacebookArray = {
+        final String[] leaderboardArray = {
             "If you give someone a program... you will frustrate them for a day; if you teach them how to program... you will frustrate them for a lifetime.",
             "Q: Why did I divide sin by tan? A: Just cos.",
             "UNIX is basically a simple operating system... but you have to be a genius to understand the simplicity.",
@@ -43,6 +43,6 @@ public class Spacebook {
             "Q: What is the biggest lie in the entire universe? A: I have read and agree to the Terms and Conditions.",
             "An SQL statement walks into a bar and sees two tables. It approaches, and asks may I join you?"
         };
-        return spacebookArray;
+        return leaderboardArray;
     }
 }
