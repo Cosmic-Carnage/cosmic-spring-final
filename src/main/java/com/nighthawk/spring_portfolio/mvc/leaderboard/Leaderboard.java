@@ -24,10 +24,9 @@ public class Leaderboard {
     @Column(unique=true)
     private String leaderboard;
 
-    private int like;
-    private int dislike;
+    private int score;
 
-    // starting jokes
+    // starting scores
     public static HashMap<String, Integer> init() {
         HashMap<String, Integer> leaderboardHash = new HashMap<>();
         {

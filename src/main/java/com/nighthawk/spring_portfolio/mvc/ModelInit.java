@@ -56,9 +56,8 @@ public class ModelInit {
             for (String leaderboard : leaderboardHash.keySet()) {
                 List<Leaderboard> leaderboardFound = leaderboardRepo.findByLeaderboardIgnoreCase(leaderboard);  // JPA lookup
                 if (leaderboardFound.size() == 0)
-                    leaderboardRepo.save(new Leaderboard(null, leaderboard, 0, 0)); //JPA save
+                    leaderboardRepo.save(new Leaderboard(null, leaderboard, leaderboardHash.get(leaderboard))); //JPA save
             }
         };
     }
 }
-
