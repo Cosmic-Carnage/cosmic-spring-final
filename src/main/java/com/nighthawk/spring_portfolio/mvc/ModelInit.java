@@ -15,6 +15,7 @@ import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
 import com.nighthawk.spring_portfolio.mvc.leaderboard.Leaderboard;
 import com.nighthawk.spring_portfolio.mvc.leaderboard.LeaderboardJpaRepository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -51,8 +52,8 @@ public class ModelInit {
                     noteRepo.save(n);  // JPA Save                  
                 }
             }
-            String[] leaderboardArray = Leaderboard.init();
-            for (String leaderboard : leaderboardArray) {
+            HashMap<String, Integer> leaderboardHash = Leaderboard.init();
+            for (String leaderboard : leaderboardHash.keySet()) {
                 List<Leaderboard> leaderboardFound = leaderboardRepo.findByLeaderboardIgnoreCase(leaderboard);  // JPA lookup
                 if (leaderboardFound.size() == 0)
                     leaderboardRepo.save(new Leaderboard(null, leaderboard, 0, 0)); //JPA save
