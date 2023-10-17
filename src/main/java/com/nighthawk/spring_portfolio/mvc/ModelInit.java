@@ -58,7 +58,6 @@ public class ModelInit {
                 if (leaderboardFound.size() == 0)
                     leaderboardRepo.save(new Leaderboard(null, leaderboard, 0, 0)); //JPA save
             }
-
         };
     }
 }
