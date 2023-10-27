@@ -24,7 +24,9 @@ public class Spacebook {
     @Column(unique=true)
     private String spacebook;
 
-    private int score;
+    private int like;
+    private int dislike;
+    private String comment;
 
     // starting scores
     public static HashMap<String, Integer> init() {

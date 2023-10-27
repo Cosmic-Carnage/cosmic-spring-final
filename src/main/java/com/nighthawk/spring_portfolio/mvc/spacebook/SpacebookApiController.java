@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 // import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.nighthawk.spring_portfolio.mvc.spacebook.Spacebook;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -26,12 +28,23 @@ public class SpacebookApiController {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/addScore/{id}/{score}")
-    public ResponseEntity<Spacebook> addScore(@PathVariable long id, @PathVariable int score) {
+    @PostMapping("/like/{id}")
+    public ResponseEntity<Spacebook> setUpVote(@PathVariable long id) {
         Optional<Spacebook> optional = repository.findById(id);
-        if (optional.isPresent()) {
+        if (optional.isPresent()) { 
+            Spacebook spacebook = optional.get(); 
+            spacebook.setLike(spacebook.getLike()+1);
+            repository.save(spacebook); 
+            return new ResponseEntity<>(spacebook, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+    }
+    @PostMapping("/dislike/{id}")
+    public ResponseEntity<Spacebook> setDownVote(@PathVariable long id) {
+        Optional<Spacebook> optional = repository.findById(id);
+        if (optional.isPresent()) { 
             Spacebook spacebook = optional.get();
-            spacebook.setScore(spacebook.getScore() + score);
+            spacebook.setDislike(spacebook.getDislike()+1);
             repository.save(spacebook);
             return new ResponseEntity<>(spacebook, HttpStatus.OK);
         }
@@ -81,4 +94,9 @@ public class SpacebookApiController {
         }
         return "File uploaded successfully.";
     }
+        @PostMapping("/comment/{id}")
+        public ResponseEntity<Spacebook> setComment(@PathVariable long id) {
+            Optional<Spacebook> optional = repository.findById(id);
+
+        }
 }
