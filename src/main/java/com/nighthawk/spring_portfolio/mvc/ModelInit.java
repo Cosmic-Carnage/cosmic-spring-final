@@ -58,6 +58,13 @@ public class ModelInit {
                 if (leaderboardFound.size() == 0)
                     leaderboardRepo.save(new Leaderboard(null, leaderboard, leaderboardHash.get(leaderboard))); //JPA save
             }
+            HashMap<String, Integer> spacebookHash = Spacebook.init();
+            for (String spacebook : spacebookHash.keySet()) {
+                List<Spacebook> spacebookFound = spacebookRepo.findBySpacebookIgnoreCase(spacebook);  // JPA lookup
+                if (spacebookFound.size() == 0)
+                    spacebookRepo.save(new Spacebook(null, spacebook, spacebookHash.get(spacebook))); //JPA save
+            }
+            
         };
     }
 }
