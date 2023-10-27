@@ -1,6 +1,6 @@
 package com.nighthawk.spring_portfolio.mvc.spacebook;
 
-import java.util.HashMap;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +26,12 @@ public class Spacebook {
 
     private int like;
     private int dislike;
-    private String comment;
+    private List<String> comments = new ArrayList<>();
+    private static List<String> initComment() {
+        ArrayList<String> comments = new ArrayList<>();
+        comments.add("You suck");
+        return comments;
+    };
 
     // starting scores
     public static HashMap<String, Integer> init() {

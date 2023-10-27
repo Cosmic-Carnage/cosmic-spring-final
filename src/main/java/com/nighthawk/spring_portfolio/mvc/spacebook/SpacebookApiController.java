@@ -94,9 +94,24 @@ public class SpacebookApiController {
         }
         return "File uploaded successfully.";
     }
-        @PostMapping("/comment/{id}")
-        public ResponseEntity<Spacebook> setComment(@PathVariable long id) {
-            Optional<Spacebook> optional = repository.findById(id);
+    @PostMapping("/comment/{id}")
+    public ResponseEntity<Spacebook> setComment(@PathVariable String comment, @PathVariable long id) {
+        Optional<Spacebook> optional = repository.findById(id);
+        if (optional.isPresent()) {
+            Spacebook spacebook = optional.get();
+            
+            // Assuming Spacebook has a List<Comment> field for storing comments
+            List<String> comments = spacebook.getComments();
+            comments.add(comment); // Add the new comment
+    
+            // Set the updated comments list back to the Spacebook
+            spacebook.setComments(comments);
+    
+            repository.save(spacebook);
+    
+            return new ResponseEntity<>(spacebook, HttpStatus.OK);
 
         }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);    
+    }
 }
