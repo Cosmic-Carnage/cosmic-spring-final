@@ -12,6 +12,8 @@ import com.nighthawk.spring_portfolio.mvc.note.Note;
 import com.nighthawk.spring_portfolio.mvc.note.NoteJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.person.Person;
 import com.nighthawk.spring_portfolio.mvc.person.PersonDetailsService;
+import com.nighthawk.spring_portfolio.mvc.spacebook.Spacebook;
+import com.nighthawk.spring_portfolio.mvc.spacebook.SpacebookJpaRepository;
 import com.nighthawk.spring_portfolio.mvc.leaderboard.Leaderboard;
 import com.nighthawk.spring_portfolio.mvc.leaderboard.LeaderboardJpaRepository;
 
@@ -25,6 +27,7 @@ public class ModelInit {
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
     @Autowired LeaderboardJpaRepository leaderboardRepo;
+    @Autowired SpacebookJpaRepository spacebookRepo;
 
     @Bean
     CommandLineRunner run() {  // The run() method will be executed after the application starts
