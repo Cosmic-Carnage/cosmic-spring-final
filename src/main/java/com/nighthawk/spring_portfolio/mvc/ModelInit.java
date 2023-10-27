@@ -65,9 +65,8 @@ public class ModelInit {
             for (String spacebook : spacebookHash.keySet()) {
                 List<Spacebook> spacebookFound = spacebookRepo.findBySpacebookIgnoreCase(spacebook);  // JPA lookup
                 if (spacebookFound.size() == 0)
-                    spacebookRepo.save(new Spacebook(null, spacebook, spacebookHash.get(spacebook))); //JPA save
+                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0, "", spacebookHash.get(spacebook))); //JPA save
             }
-            
         };
     }
 }
