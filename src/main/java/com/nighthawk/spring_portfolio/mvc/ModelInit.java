@@ -69,7 +69,7 @@ public class ModelInit {
                     spacebookRepo.save(new Spacebook(null, spacebook, 0, 0));                 
                 }  //JPA save
                 if (spacebookFound.size() == 0)
-                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0, null)); //JPA save
+                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0)); //JPA save
             }
         };
         };
