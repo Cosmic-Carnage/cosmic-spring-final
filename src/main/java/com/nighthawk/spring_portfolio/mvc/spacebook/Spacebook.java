@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,12 +27,9 @@ public class Spacebook {
 
     private int like;
     private int dislike;
-    private List<String> comments = new ArrayList<>();
-    private static List<String> initComment() {
-        ArrayList<String> comments = new ArrayList<>();
-        comments.add("You suck");
-        return comments;
-    };
+
+    @OneToMany(mappedBy = "spacebook")
+    private List<String> comments = new ArrayList<>(Arrays.asList("You Suck", "So bad"));
 
     // starting scores
     public static HashMap<String, Integer> init() {
