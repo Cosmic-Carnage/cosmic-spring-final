@@ -72,6 +72,5 @@ public class ModelInit {
                     spacebookRepo.save(new Spacebook(null, spacebook, 0, 0)); //JPA save
             }
         };
-        };
     }
 }
