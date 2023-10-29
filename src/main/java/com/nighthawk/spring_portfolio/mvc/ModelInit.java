@@ -44,6 +44,7 @@ public class ModelInit {
             // Person database is populated with test data
             Person[] personArray = Person.init();
             for (Person person : personArray) {
+                //findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase
                 List<Person> personFound = personService.list(person.getName(), person.getEmail());  // lookup
                 if (personFound.size() == 0) {
                     personService.save(person);  // save
@@ -59,6 +60,7 @@ public class ModelInit {
                 List<Leaderboard> leaderboardFound = leaderboardRepo.findByLeaderboardIgnoreCase(leaderboard);  // JPA lookup
                 if (leaderboardFound.size() == 0)
                     leaderboardRepo.save(new Leaderboard(null, leaderboard, leaderboardHash.get(leaderboard))); //JPA save
+                    leaderboardRepo.save(new Leaderboard(null, leaderboard, leaderboardHash.get(leaderboard))); //JPA save
             }
             HashMap<String, Integer> spacebookHash = Spacebook.init();
             for (String spacebook : spacebookHash.keySet()) {
@@ -66,7 +68,10 @@ public class ModelInit {
                 if (spacebookFound.size() == 0) {
                     spacebookRepo.save(new Spacebook(null, spacebook, 0, 0));                 
                 }  //JPA save
+                if (spacebookFound.size() == 0)
+                    spacebookRepo.save(new Spacebook(null, spacebook, 0, 0, null)); //JPA save
             }
+        };
         };
     }
 }
